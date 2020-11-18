@@ -7,7 +7,7 @@ public class LightMeter {
     private int shutterSpeed;
 
     public LightMeter(int currentLightValue, int aperture, int iso, int shutterSpeed) {
-        this.lightMeterReading = readLightLevel(currentLightValue);
+        this.lightMeterReading = currentLightValue;
         this.aperture = aperture;
         this.iso = iso;
         this.shutterSpeed = shutterSpeed;
@@ -22,9 +22,9 @@ public class LightMeter {
         return properExposure;
     }
 
-    public static int readLightLevel(int brightness) {
-        Integer lightReading = null;
-        //do something to create light level
-        return lightReading;
-    }
+//    public static int readLightLevel(int brightness) {
+//        Integer lightReading = null;
+//        //do something to create light level
+//        return lightReading;
+//    }
 }

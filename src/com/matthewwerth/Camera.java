@@ -21,14 +21,18 @@ public class Camera {
         else throw new IllegalArgumentException("Not Enough Space In Memory To Store Photo!");
     }
 
-    public Boolean takePicture(int lightReading) {
+    public String takePicture(int lightReading) throws Exception {
         Random rand = new Random();
         int randInt = rand.nextInt(5); // create a random amount of storage to simulate storage space 0-5
-        Memory.storeData(randInt);
 
-        LightMeter lightMeterReading = new LightMeter(50,4, 1600, 200);
-        if(LightMeter.isProperlyExposed(lightMeterReading.getLightMeterReading())) return true;
+        checkForMemorySpace(randInt);
+
+        LightMeter lightMeterReading = new LightMeter(lightReading,4, 1600, 200);
+        if(LightMeter.isProperlyExposed(lightMeterReading.getLightMeterReading())) {
+            Memory.storeData(randInt);
+            return "You Took A Picture! You Have " + Memory.getStorageAvailable() + " Storage Remaining";
+        }
         //check if we can take a picture with the light we have..
-        return false;
+        return "You Cannot Take A Picture With This Amount Of Light. Adjust Lighting And Try Again!";
     }
 }
